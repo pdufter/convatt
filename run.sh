@@ -9,10 +9,11 @@ mkdir -p $LOGDIR
 mkdir -p $LOGDIRUD
 
 SEED=42
+GPUID=2
 
 
 python main.py \
-	--gpu_id 7 \
+	--gpu_id ${GPUID} \
 	--comment "SAN" \
 	--logging true \
 	--ex_id $SEED,ptb,sa \
@@ -25,7 +26,7 @@ python main.py \
 	--seed $SEED
 
 python main.py \
-	--gpu_id 7 \
+	--gpu_id ${GPUID}  \
 	--comment "SAN+PE[add]" \
 	--logging true \
 	--ex_id $SEED,ptb,sapeadd \
@@ -42,7 +43,7 @@ python main.py \
 	--seed $SEED
 
 python main.py \
-	--gpu_id 7 \
+	--gpu_id ${GPUID}  \
 	--comment "SAN+PE[con]" \
 	--logging true \
 	--ex_id $SEED,ptb,sapeconc \
@@ -58,7 +59,7 @@ python main.py \
 	--seed $SEED
 
 python main.py \
-	--gpu_id 7 \
+	--gpu_id ${GPUID}  \
 	--comment "SAN+P" \
 	--logging true \
 	--ex_id $SEED,ptb,sap \
@@ -72,7 +73,7 @@ python main.py \
 	--seed $SEED
 
 python main.py \
-	--gpu_id 7 \
+	--gpu_id ${GPUID}  \
 	--comment "SAN+R" \
 	--logging true \
 	--ex_id $SEED,ptb,sar \
@@ -86,7 +87,7 @@ python main.py \
 	--seed $SEED
 
 python main.py \
-	--gpu_id 7 \
+	--gpu_id ${GPUID}  \
 	--comment "SAN+P+R" \
 	--logging true \
 	--ex_id $SEED,ptb,sapr \
@@ -101,7 +102,7 @@ python main.py \
 	--seed $SEED
 
 python main.py \
-	--gpu_id 7 \
+	--gpu_id ${GPUID}  \
 	--comment "SAN+PE[add]+Conv" \
 	--logging true \
 	--ex_id $SEED,ptb,sapeconv \
@@ -119,7 +120,7 @@ python main.py \
 
 
 python main.py \
-	--gpu_id 7 \
+	--gpu_id ${GPUID}  \
 	--comment "SAN+PE[add]+Temp" \
 	--logging true \
 	--ex_id $SEED,ptb,satemp \
@@ -137,7 +138,7 @@ python main.py \
 	--seed $SEED
 
 python main.py \
-	--gpu_id 7 \
+	--gpu_id ${GPUID}  \
 	--comment "SAN+PE[add]+Conv2d" \
 	--logging true \
 	--ex_id $SEED,ptb,sapeconv2d \
@@ -161,7 +162,9 @@ done
 
 python ud_parallel.py \
 --logdir $LOGDIRUD \
---udpath $UDPATH
+--udpath $UDPATH \
+--seeds 42 \
+--gpus 2,3,4,5,6
 
 
 
